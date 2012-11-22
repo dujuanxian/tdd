@@ -1,22 +1,15 @@
-/**
- * Created with IntelliJ IDEA.
- * User: twer
- * Date: 11/21/12
- * Time: 7:11 PM
- * To change this template use File | Settings | File Templates.
- */
 public class TaxCharge {
     private static final Double START_PRICE = 6d;
-    private double PRICE1 = 1.5d;
-    private double DISTANCE1 = 2d;
-    private double DISTANCE2 = 8d;
+    private double PRICE_PER_KILOMETER = 1.5d;
+    private double START_DISTANCE = 2d;
+    private double EXTEND_DISTANCE = 8d;
 
-    public double countPrice(double miles) {
-        double price = START_PRICE;
-        if (miles > DISTANCE2) {
+    public double countPrice(double distance) {
+        double price = 0d;
+        if (distance > EXTEND_DISTANCE) {
             price = 17.25d;
-        } else if (miles > DISTANCE1) {
-            price += PRICE1 * (miles - DISTANCE1);
+        } else if (distance > START_DISTANCE) {
+            price = START_PRICE + PRICE_PER_KILOMETER * (distance - START_DISTANCE);
         }
         return price;
     }

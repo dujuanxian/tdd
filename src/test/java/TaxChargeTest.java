@@ -1,55 +1,54 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.math.BigDecimal;
-
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 
 public class TaxChargeTest {
 
-    TaxCharge charger;
+    TaxCharge taxCharge;
 
     @Before
     public void setUp() throws Exception {
-        charger = new TaxCharge();
+        taxCharge = new TaxCharge();
     }
 
     @Test
-    public void shouldChargeStartingPriceBetween0To2Kilometers() {
-        double distance = 1.2;
+    public void shouldChargeFor1Kilometers() {
+        double distance = 1d;
 
-        assertThat(charger.countPrice(distance), is(6.0d));
+        assertThat(countPrice(distance), is(6.0d));
     }
 
     @Test
-    public void shouldChargeStartingPriceEquals2Kilometers() {
-        double distance = 2;
+    public void shouldChargeFor2Kilometers() {
+        double distance = 2d;
 
-        assertThat(charger.countPrice(distance), is(6.0d));
+        assertThat(countPrice(distance), is(6.0d));
     }
 
     @Test
     public void shouldChargeFor3Kilometers() {
-        double distance = 3;
+        double distance = 3d;
 
-        assertThat(charger.countPrice(distance), is(7.5d));
+        assertThat(countPrice(distance), is(7.5d));
     }
 
     @Test
     public void shouldChargeFor8Kilometers(){
-        double distance = 8;
-        assertThat(charger.countPrice(distance), is(15d));
+        double distance = 8d;
+
+        assertThat(countPrice(distance), is(15d));
     }
 
     @Test
     public void shouldChargeFor9Kilometers(){
-        double distance = 9;
-        assertThat(charger.countPrice(distance), is(17.25d));
+        double distance = 9d;
+
+        assertThat(countPrice(distance), is(17.25d));
     }
 
-
-
-
+    private double countPrice(double distance) {
+        return taxCharge.countPrice(distance);
+    }
 }
